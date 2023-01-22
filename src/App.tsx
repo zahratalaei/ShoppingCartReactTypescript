@@ -5,21 +5,22 @@ import Store from "./pages/Store"
 import About from "./pages/About"
 import Navbar from "./components/Navbar"
 import { ShoppingCartProvider } from "./context/ShppingCartContext"
+import { ProductContextProvider } from "./context/ProductsContext"
 function App() {
 
   return (
-    
-    <ShoppingCartProvider>
-      <Navbar/>
-      <Container className="mb-4">
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/store" element={<Store/>} />
-          <Route path="/about" element={<About/>} />
-        </Routes>
-      </Container>
-    </ShoppingCartProvider>
-    
+    <ProductContextProvider>
+      <ShoppingCartProvider>
+        <Navbar/>
+        <Container className="mb-4">
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/store" element={<Store/>} />
+            <Route path="/about" element={<About/>} />
+          </Routes>
+        </Container>
+      </ShoppingCartProvider>
+    </ProductContextProvider>
   )
 }
 

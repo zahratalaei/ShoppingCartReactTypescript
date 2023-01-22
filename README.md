@@ -1,9 +1,9 @@
 # ShoppingCartReactTypescript
-
-
-**Used technologies and libraries:**
+This app is progressing...<br><br>
+**Used languages and technologies:**
 - reactjs
 - typescript
-- react-router-dom
+- bootstrapt5
 - react-bootstrap
-- bootstrap 5
+- axios
+- react-router-dom
