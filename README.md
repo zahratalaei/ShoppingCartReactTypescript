@@ -7,3 +7,5 @@ This app is progressing...<br><br>
 - react-bootstrap
 - axios
 - react-router-dom
+<br>
+Data is fetched from https://fakeapi.platzi.com/
