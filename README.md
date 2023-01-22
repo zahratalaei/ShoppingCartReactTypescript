@@ -7,4 +7,3 @@ This app is progressing...<br><br>
 - react-bootstrap
 - axios
 - react-router-dom
-
