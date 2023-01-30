@@ -1,6 +1,6 @@
 import { Button, Stack } from 'react-bootstrap'
 import { useShoppingCart } from '../context/ShppingCartContext'
-import storeItems from '../data/items.json'
+// import storeItems from '../data/items.json'
 import { formatCurrency } from '../utilities/FormatCurrency'
 import { useProductsContext } from '../context/ProductsContext'
 type Props = {
@@ -17,7 +17,7 @@ const CartItem = (props: Props) => {
      if(item == null){return null}
   return (
     <Stack direction='horizontal' gap={2} className='d-flex align-items-center'>
-     <img src={item.images[0]} style={{width:"125px", height:"75px", objectFit:"cover"}}/>
+     <img src={item.image} style={{width:"125px", height:"75px", objectFit:"cover"}}/>
      <div className="me-auto">
           <div>{item.title} {quantity > 1 && <span className='text-muted' style={{fontSize:".65rem"}}>x{quantity}</span>}</div>
           <div className="text-muted">

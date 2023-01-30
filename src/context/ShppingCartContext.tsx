@@ -20,7 +20,7 @@ type ShoppingCartContext={
 }
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext)
-export const useShoppingCart =()=>{
+export const useShoppingCart = ()=>{
      return useContext(ShoppingCartContext)
 }
 
