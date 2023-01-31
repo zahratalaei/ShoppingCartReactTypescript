@@ -1,36 +1,52 @@
 import axios from "axios";
-import { createContext, useEffect, useState,ReactNode, useContext } from "react";
+import { createContext, useEffect, useState,ReactNode, useContext,ReactElement } from "react";
 
-type ProductProviderProps={
-     children: ReactNode
+
+type Rate={
+     rate:number,
+     count:number
 }
 export type ProductProps = {
      id:number,
      title:string,
      price:number
      description:string,
-     images:string[]
+     image:string,
+     category:string,
+     rating:Rate
 }
 
 type UseProductsContextType = {products: ProductProps[]}
 const initState:ProductProps[]=[]
 const initProductsContext : UseProductsContextType={products:[]}
 export const ProductsContext = createContext<UseProductsContextType>(initProductsContext)
-export const useProductsContext = ()=>{
+export const useProductsContext = ():UseProductsContextType=>{
      return useContext(ProductsContext)
 } 
-export const ProductContextProvider = ({children}:ProductProviderProps) => {
+type ChildrenProps = {
+     children: ReactNode
+}
+export const ProductContextProvider = ({children}:ChildrenProps) : ReactElement => {
      const [products, setProducts] = useState<ProductProps[]>(initState)
 
      useEffect(()=>{
-          const fetchProducts = async() =>{
-               await axios.get('https://api.escuelajs.co/api/v1/products')
-               .then(res => setProducts(res.data))
-                
-          }
           fetchProducts();
      },[])
-
+     const fetchProducts = async() =>{
+          if(products.length === 0)
+          {
+               await axios.get('https://fakestoreapi.com/products')
+               .then(res => {
+                    setProducts(res.data)
+                    console.log("fetchProducts");
+               })  
+              
+          }  
+                    
+          
+          return products
+           
+     }
      return(
           <ProductsContext.Provider value={{products}}>
                {children}

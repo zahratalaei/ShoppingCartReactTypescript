@@ -1,6 +1,6 @@
 import {Button,Nav,Container,Navbar as NavbarBs} from 'react-bootstrap'
 import {NavLink } from 'react-router-dom'
-import { useShoppingCart } from '../context/ShppingCartContext'
+import { useShoppingCart } from '../context/ShoppingCartContext'
 type Props = {}
 
 const Navbar = (props: Props) => {
