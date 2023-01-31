@@ -1,18 +1,10 @@
 import {Button, Card} from 'react-bootstrap'
 import { formatCurrency } from '../utilities/FormatCurrency'
-// import { useContext } from 'react'
-import { useShoppingCart } from '../context/ShppingCartContext'
+import { ReducerActions, useShoppingCart } from '../context/ShoppingCartContext'
 import { ProductProps } from '../context/ProductsContext'
-// type StoreItemProps = {
-//      id:number,
-//      name:string,
-//      price:number,
-//      imgUrl:string
-// }
 
-// const StoreItem = (item: StoreItemProps) => {
 const StoreItem = (item: ProductProps ) => {
-     const {getItemQuantity,increaseCartQuantity,decreaseCartQuantity,removeFromCart} = useShoppingCart()
+     const {getItemQuantity,dispatch} = useShoppingCart()
      const quantity = getItemQuantity(item.id)
   return (
     <Card className='h-100'>
@@ -24,17 +16,18 @@ const StoreItem = (item: ProductProps ) => {
           </Card.Title>
           <div className="mt-auto">
                {quantity === 0 ? (
-                    <Button className='w-100' onClick={()=>increaseCartQuantity(item.id)} >Add To Cart</Button>
-               ):
+                    <Button className='w-100' onClick={()=>dispatch({type: ReducerActions.increaseCartQuantity,payload:item.id})} >Add To Cart</Button>
+               )
+               :
                (<div className='d-flex align-items-center flex-column' style={{gap:".5rem"}}>
                     <div className="d-flex align-items-center justify-content-center"style={{gap:".5rem"}}>
-                         <Button onClick={()=>decreaseCartQuantity(item.id)}>-</Button>
+                         <Button onClick={()=>dispatch({type:ReducerActions.decreaseCartQuantity,payload:item.id})}>-</Button>
                          <div>
                          <span className="fs-3">{quantity}</span> in cart
                          </div>
-                         <Button onClick={()=>increaseCartQuantity(item.id)}>+</Button>
+                         <Button onClick={()=>dispatch({type: ReducerActions.increaseCartQuantity,payload:item.id})}>+</Button>
                     </div>
-                    <Button variant='danger'size='sm' onClick={()=>removeFromCart(item.id)}>Remove</Button>
+                    <Button variant='danger'size='sm' onClick={()=>dispatch({type:ReducerActions.removeFromCart,payload:item.id})}>Remove</Button>
                </div>
                )}
           </div>
