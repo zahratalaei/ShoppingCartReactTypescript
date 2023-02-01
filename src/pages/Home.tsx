@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { memo,useEffect, useState } from 'react'
 import { Col, Row, Stack } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
@@ -8,13 +8,12 @@ import { Link } from 'react-router-dom'
 const Home = () => {
   const[cats,setCats] = useState<string[]>([])
   useEffect(()=>{
-    fetchCat();
-    
- 
+    fetchCat(); 
   },[])
   const fetchCat = async() =>{
     if(cats.length == 0 ){await axios.get('https://fakestoreapi.com/products/categories').then(res =>setCats(res.data) )}else{return cats}
   }
+
   console.log(cats)
   return (
     <main>
