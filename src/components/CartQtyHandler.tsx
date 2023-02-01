@@ -2,11 +2,12 @@ import { Button } from 'react-bootstrap'
 import { ReducerActions, useShoppingCart } from '../context/ShoppingCartContext'
 import { ProductProps } from '../context/ProductsContext'
 type Props = {
-     id:number,
-     quantity:number,
+     item:ProductProps,
+     isInCart:boolean,
+
 }
 
-const CartQtyHandler = (item: ProductProps) => {
+const CartQtyHandler = ({item,isInCart}:Props) => {
      const {getItemQuantity,dispatch} = useShoppingCart()
      const quantity = getItemQuantity(item.id)
      const decreaseCart =()=>{
