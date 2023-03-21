@@ -37,7 +37,7 @@ export const ProductContextProvider = ({children}:ChildrenProps) : ReactElement 
      const fetchProducts = async() =>{
           if(products.length === 0)
           {
-               await axios.get('https://fakestoreapi.com/products')
+               await axios.get('https://api.escuelajs.co/api/v1/products')
                .then(res => {
                     setProducts(res.data)
                     console.log("fetchProducts");
