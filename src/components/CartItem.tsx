@@ -22,7 +22,7 @@ const CartItem = ({id,quantity}:Props) => {
      }
   return (
     <Stack direction='horizontal' gap={2} className='d-flex align-items-center'>
-     <img src={item.image} style={{width:"150px", height:"100px", objectFit:"cover"}}/>
+     <img src={item.images[0]} style={{width:"150px", height:"100px", objectFit:"cover"}}/>
      <div className="me-auto">
           <div>{item.title} {quantity > 1 && <span className='text-muted' style={{fontSize:".65rem"}}>x{quantity}</span>}</div>
           <div className="text-muted">
