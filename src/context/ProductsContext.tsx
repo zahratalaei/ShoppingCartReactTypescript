@@ -2,9 +2,11 @@ import axios from "axios";
 import { createContext, useEffect, useState,ReactNode, useContext,ReactElement } from "react";
 
 
-type Rate={
-     rate:number,
-     count:number
+
+export type Category = {
+     id: number,
+     name:string,
+     image:string,
 }
 export type ProductProps = {
      id:number,
@@ -12,8 +14,8 @@ export type ProductProps = {
      price:number
      description:string,
      image:string,
-     category:string,
-     rating:Rate
+     category:Category,
+     images:string[]
 }
 
 type UseProductsContextType = {products: ProductProps[]}
@@ -35,7 +37,7 @@ export const ProductContextProvider = ({children}:ChildrenProps) : ReactElement 
      const fetchProducts = async() =>{
           if(products.length === 0)
           {
-               await axios.get('https://fakestoreapi.com/products')
+               await axios.get('https://api.escuelajs.co/api/v1/products')
                .then(res => {
                     setProducts(res.data)
                     console.log("fetchProducts");
