@@ -22,7 +22,7 @@ type ActionType ={
      type:string,
      payload?:number
 }
-const reducer = (state : CartStateType,action:ActionType) : CartStateType => {
+const reducer = (state: CartStateType, action:ActionType) : CartStateType => {
      
     switch(action.type){
        case ReducerActions.increaseCartQuantity:{

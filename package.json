@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.24.4",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "axios": "^1.2.3",
     "bootstrap": "^5.2.3",

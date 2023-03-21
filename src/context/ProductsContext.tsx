@@ -2,9 +2,11 @@ import axios from "axios";
 import { createContext, useEffect, useState,ReactNode, useContext,ReactElement } from "react";
 
 
-type Rate={
-     rate:number,
-     count:number
+
+export type Category = {
+     id: number,
+     name:string,
+     image:string,
 }
 export type ProductProps = {
      id:number,
@@ -12,8 +14,8 @@ export type ProductProps = {
      price:number
      description:string,
      image:string,
-     category:string,
-     rating:Rate
+     category:Category,
+     images:string[]
 }
 
 type UseProductsContextType = {products: ProductProps[]}

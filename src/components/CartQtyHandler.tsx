@@ -3,11 +3,11 @@ import { ReducerActions, useShoppingCart } from '../context/ShoppingCartContext'
 import { ProductProps } from '../context/ProductsContext'
 type Props = {
      item:ProductProps,
-     isInCart:boolean,
+     // isInCart:boolean,
 
 }
 
-const CartQtyHandler = ({item,isInCart}:Props) => {
+const CartQtyHandler = ({item}:Props) => {
      const {getItemQuantity,dispatch} = useShoppingCart()
      const quantity = getItemQuantity(item.id)
      const decreaseCart =()=>{

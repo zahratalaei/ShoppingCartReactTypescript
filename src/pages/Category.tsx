@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Col, Row} from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import StoreItem from '../components/StoreItem'
@@ -9,16 +9,16 @@ import axios from 'axios'
 
 const Category = () => {
      const[items, setItems] = useState<ProductProps[]>([])
-     const {cat} = useParams<{cat:string}>()
+     const {id} = useParams<{id:number}>()
      useEffect(()=>{
           fetchProductsByCategory()
-     },[cat])
+     },[id])
      const fetchProductsByCategory = async () => {
           if(items.length === 0 )
           {
-               await axios.get(`https://fakestoreapi.com/products/category/${cat}`)
+               await axios.get(`https://api.escuelajs.co/api/v1/categories/${id}/products`)
                .then(res=>setItems(res.data))
-               console.log("fetchProductsByCategory")          
+               console.log(items)          
      }
           return items
      }
