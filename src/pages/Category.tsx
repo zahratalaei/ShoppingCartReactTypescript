@@ -9,7 +9,7 @@ import axios from 'axios'
 
 const Category = () => {
      const[items, setItems] = useState<ProductProps[]>([])
-     const {id} = useParams<{id:number}>()
+     const {id} = useParams()
      useEffect(()=>{
           fetchProductsByCategory()
      },[id])
