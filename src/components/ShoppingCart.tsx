@@ -6,7 +6,7 @@ import { useProductsContext } from '../context/ProductsContext'
 
 const ShoppingCart = () => {
     const {closeCart,cartItems,isOpen} = useShoppingCart()
-    const{products} = useProductsContext()
+    const{pState} = useProductsContext()
   return (
     <Offcanvas show={isOpen} placement='end' onHide={closeCart}>
      <Offcanvas.Header closeButton>
@@ -22,7 +22,7 @@ const ShoppingCart = () => {
                     )}
                     <div className="ms-auto fs-5 fw-bold">
                          Total: {formatCurrency(cartItems.reduce((total,cartItem)=>{
-                              const item = products.find(i=> i.id === cartItem.id)
+                              const item = pState.products.find(i=> i.id === cartItem.id)
                               return total + (item?.price || 0)* cartItem.quantity
                          },0))}
                     </div>
