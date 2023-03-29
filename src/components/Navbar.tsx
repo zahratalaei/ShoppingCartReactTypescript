@@ -1,19 +1,33 @@
-import {Button,Nav,Container,Navbar as NavbarBs} from 'react-bootstrap'
+import {Button,Nav,Container,Navbar as NavbarBs,Form} from 'react-bootstrap'
 import {NavLink } from 'react-router-dom'
 import { useShoppingCart } from '../context/ShoppingCartContext'
+import { PReducerAction, useProductsContext } from '../context/ProductsContext'
+// import Filter from './Filter'
 type Props = {}
 
 const Navbar = (props: Props) => {
   const{openCart,cartQuantity} = useShoppingCart()
+  const{pDispatch,pState} = useProductsContext()
+  const searchHandler = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    pDispatch({type:PReducerAction.SET_SEARCH,payload:e.target.value})
+
+  }
   
   return (
     <NavbarBs className='bg-white shadow-sm mb-3' sticky='top' >
      <Container>
           <Nav>
                <Nav.Link to='/' as={NavLink}>Home</Nav.Link>
-               <Nav.Link to='/store' as={NavLink}>Store</Nav.Link>
+               {/* <Nav.Link to='/store' as={NavLink}>Store</Nav.Link> */}
                <Nav.Link to='/about' as={NavLink}>About</Nav.Link>
           </Nav>
+          <Form.Control 
+            style={{maxWidth:500}} 
+            placeholder='Search a product' 
+            onChange={searchHandler} 
+            type='search' 
+            aria-label='Search'
+          />
           <Button
             onClick={openCart}
             style={{ width: "3rem", height: "3rem", position: "relative" }}

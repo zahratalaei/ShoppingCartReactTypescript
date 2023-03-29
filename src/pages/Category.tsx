@@ -9,14 +9,14 @@ import axios from 'axios'
 
 const Category = () => {
      const[items, setItems] = useState<ProductProps[]>([])
-     const {id} = useParams()
+     const {id} = useParams<{id:string}>()
      useEffect(()=>{
           fetchProductsByCategory()
      },[id])
      const fetchProductsByCategory = async () => {
           if(items.length === 0 )
           {
-               await axios.get(`https://api.escuelajs.co/api/v1/categories/${id}/products`)
+               await axios.get(`https://api.escuelajs.co/api/v1/products/?categoryId=${id}`)
                .then(res=>setItems(res.data))
                console.log(items)          
      }

@@ -8,10 +8,10 @@ type Props = {
 }
 
 const CartItem = ({id,quantity}:Props) => {
-     const {products} = useProductsContext()
+     const {pState} = useProductsContext()
      const {dispatch} = useShoppingCart()
      console.log("quantity: ",quantity);
-     const item= products.find(i=> i.id ===id)
+     const item= pState.products.find(i=> i.id ===id)
      if(item == null){return null}
      const decreaseCart =()=>{
           if(quantity > 1){

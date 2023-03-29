@@ -6,12 +6,12 @@ import StoreItemMemo from '../components/StoreItem'
 type Props = {}
 
 const Store = (props: Props) => {
-  const{products} = useProductsContext()
+  const{pState} = useProductsContext()
 
   return (
     <>
       <Row md={2} xs={1} lg={3} className='g-3'>
-        {products.map(item => (
+        {pState.products.map(item => (
           <Col key={item.id}>
             <StoreItemMemo {...item}/>
           </Col>
