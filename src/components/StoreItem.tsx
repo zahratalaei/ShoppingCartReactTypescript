@@ -15,8 +15,8 @@ const StoreItem = (item: ProductProps ) => {
 
      <Card.Body className='d-flex flex-column' >
           <Card.Title className='d-flex justify-content-between align-items-baseline mb-4'>
-               <span className='fs-2'>{item.title}</span>
-               <span className='ms-2 text-muted'>{formatCurrency(item.price)}</span>
+               <span className='fs-4'>{item.title}</span>
+               <span className='ms-2 text-muted fs-6'>{formatCurrency(item.price)}</span>
           </Card.Title>
           <CartQtyHandler item={item}/>
           </Card.Body>
