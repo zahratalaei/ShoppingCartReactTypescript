@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect,ReactNode, useContext,ReactElement } from "react";
+import { createContext, useEffect,ReactNode, useContext,ReactElement, useState } from "react";
 import {useReducer} from 'react'
 
 
@@ -85,6 +85,7 @@ const pReducer = (state:PStateType,action:ActionType): PStateType =>{
  }
 
 export const ProductContextProvider = ({children}:ChildrenProps) : ReactElement => {
+     const [offset, setOffset] = useState(0)
      const [pState,pDispatch] = useReducer(pReducer, initialPState)
      useEffect(()=>{
           fetchProducts();
@@ -92,7 +93,7 @@ export const ProductContextProvider = ({children}:ChildrenProps) : ReactElement 
      const fetchProducts = async() =>{
           
                try {
-                    const res = await axios.get(`https://api.escuelajs.co/api/v1/products?offset=0&limit=20&title=${pState.search}&price_min=${pState.minPrice}&price_max=${pState.maxPrice}&categoryId=${pState.categoryId}`)
+                    const res = await axios.get(`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=24&title=${pState.search}&price_min=${pState.minPrice}&price_max=${pState.maxPrice}&categoryId=${pState.categoryId}`)
                     const data = await res.data
                     pDispatch({type:'FETCH_DATA', payload:data})
                     

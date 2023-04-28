@@ -15,3 +15,7 @@
          white-space: nowrap;
      }
 }
+.category:hover{
+     background-color: gray;
+     cursor: pointer;
+}
