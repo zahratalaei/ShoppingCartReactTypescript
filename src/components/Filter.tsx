@@ -10,6 +10,7 @@ const Filter = (): JSX.Element => {
   const [openCat,setOpenCat] = useState<boolean>(true)
   const[cats,setCats] = useState<Category[]>([])
   const {pState, pDispatch} = useProductsContext()
+  //handle category selection
   const handleChange = (e:React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault()
   const catName:string = e.target.value;
@@ -17,14 +18,25 @@ const Filter = (): JSX.Element => {
   pDispatch({type:PReducerAction.SET_CATEGORY,payload:selectedCat[0].id})
  
  }
+ //handle category click
+  const catHandler = (e:React.MouseEvent<HTMLParagraphElement>) => {
+    e.preventDefault()
+  const catName:string|null = e.currentTarget.textContent;
+  const selectedCat: Category[] = cats.filter(cat=> cat.name == catName)
+  pDispatch({type:PReducerAction.SET_CATEGORY,payload:selectedCat[0].id})
+ 
+ }
+ //set max price
  const setMaxPrice = (e:React.ChangeEvent<HTMLInputElement>)=>{
   const maxPrice:string = e.target.value
   pDispatch({type:PReducerAction.SET_MAX_PRICE,payload:maxPrice})
  }
+ //set min price
  const setMinPrice = (e:React.ChangeEvent<HTMLInputElement>)=>{
   const minPrice =e.target.value
   pDispatch({type:PReducerAction.SET_MIN_PRICE,payload:minPrice})
  }
+ //clear all filters
  const reset = () =>{
    
     pDispatch({type:PReducerAction.RESET_FILTERS})
@@ -33,19 +45,23 @@ const Filter = (): JSX.Element => {
 useEffect(()=>{
   fetchCat(); 
 },[])
+
+//get all categories
 const fetchCat = async() =>{
   if(cats.length == 0 ){await axios.get('https://api.escuelajs.co/api/v1/categories').then(res =>setCats(res.data) )}else{return cats}
 }
+
   return (
     <div style={{color:"white"}} className='filter p-2 border border-light border-3 mt-3'>
       <div className='border border-1 border-light'>
-          <h4 onClick={()=>{setOpenCat(!openCat)}}>Categories</h4>
+          <h4 onClick={()=>{setOpenCat(!openCat)}}>Categories {openCat ? <IoIosArrowUp/>: <IoIosArrowDown/>  }</h4>
+          
           <hr />
         <Collapse in={openCat}>
             <div>
               {cats.map(cat => 
               (
-                <p className='p-1 lh-sm'>{cat.name}</p>
+                <p className='p-1 lh-sm category' key={cat.id} onClick={catHandler}>{cat.name}</p>
                 ))}
             </div>
         </Collapse>
@@ -77,9 +93,7 @@ const fetchCat = async() =>{
                   min='0'
                   step='10'
                   value={pState.minPrice}
-                  onChange={setMinPrice}
-                  // placeholder='min price'
-                  
+                  onChange={setMinPrice}               
                 />
               
               </div>
@@ -91,7 +105,6 @@ const fetchCat = async() =>{
                   min={pState.minPrice}
                   step='10'
                   onChange={setMaxPrice}
-                  // placeholder='max price'
                   value={pState.maxPrice}
                 />
             </div>
