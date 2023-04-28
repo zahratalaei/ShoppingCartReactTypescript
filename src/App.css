@@ -1,0 +1,17 @@
+.filterTitle{
+     white-space: nowrap;
+}
+
+@media screen and (max-width:992px){
+     .filterTitle{
+         font-size: unset;
+     }
+     .form-control{
+          font-size: medium;
+     }
+}
+@media screen and (max-width:496px){
+     .filter .btn{
+         white-space: nowrap;
+     }
+}

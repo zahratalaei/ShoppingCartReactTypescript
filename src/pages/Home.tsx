@@ -6,6 +6,7 @@ import { Category } from '../context/ProductsContext'
 import Store from './Store'
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import Filter from '../components/Filter'
+import Banner from '../components/Banner'
 
 const Home = () => {
   const[cats,setCats] = useState<Category[]>([])
@@ -18,27 +19,15 @@ const Home = () => {
 
   console.log(cats)
   return (
-    <main>
-      {/* <h2>Categories</h2> */}
-{/*       
-      <Row md={8} xs={3} lg={10} className='g-3'>
-      {cats.map((cat,index) => (
-        <Col className="cat" key={index}>
-          <Link to={`/category/${cat.id}`} className='text-decoration-none text-reset'> */}
-            {/* <LazyLoadImage src={cat.image} height='200px'style={{objectFit:"cover"}} /> */}
-            {/* <button className='btn btn-outline-dark'>{cat.name}</button>
-          </Link>
-        </Col>
-      ))}
-      </Row> */}
+    <main className='bg-dark container-fluid'>
       <Row>
-        <Col className='col-3'>
-        <Filter/>
+        <Col className='col-3 col-sm-12 bg-dark col-auto col-md-3 min-vh-100'>
+          <Filter/>
         </Col>
         <Col>
-      {/* <h2 className='mt-2'>All Products</h2> */}
-      <Store/>
-      </Col>
+          <Banner/>
+          <Store/>
+        </Col>
       </Row>
     </main>
   )
