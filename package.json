@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/react-bootstrap": "^0.32.32",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "axios": "^1.2.3",
     "bootstrap": "^5.2.3",

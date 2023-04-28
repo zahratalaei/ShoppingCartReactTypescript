@@ -25,7 +25,7 @@ const CartQtyHandler = ({item}:Props) => {
      :
      (<div className='d-flex align-items-center flex-column' style={{gap:".5rem"}}>
           <div className="d-flex align-items-center justify-content-center"style={{gap:".5rem"}}>
-               <Button onClick={decreaseCart}>-</Button>
+               <Button onClick={decreaseCart} className='fs-6'>-</Button>
                <div>
                <span className="fs-3">{quantity}</span> in cart
                </div>

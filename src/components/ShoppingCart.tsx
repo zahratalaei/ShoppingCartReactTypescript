@@ -16,16 +16,21 @@ const ShoppingCart = () => {
      <Offcanvas.Body>
           <Stack gap={3}>
                {cartItems.length!==0 ? (cartItems.map(item =>
+                   (
+                    <>
                     <CartItem key={item.id} {...item}/>
-                    )):(
-                         <div>Cart is empty</div>
-                    )}
                     <div className="ms-auto fs-5 fw-bold">
                          Total: {formatCurrency(cartItems.reduce((total,cartItem)=>{
                               const item = pState.products.find(i=> i.id === cartItem.id)
                               return total + (item?.price || 0)* cartItem.quantity
                          },0))}
                     </div>
+                    </>
+                    )
+                    )):(
+                         <div>Cart is empty</div>
+                    )}
+                    
           </Stack>
      </Offcanvas.Body>
     </Offcanvas>
