@@ -50,7 +50,7 @@ const CartItem = ({id,quantity}:Props) => {
                               {quantity && <div className='px-1' style={{fontSize:"1rem"}}>{quantity}</div>}
                               <Button size='sm' onClick={()=>dispatch({type: ReducerActions.increaseCartQuantity,payload:item.id})}>+</Button>
                               </div>
-                         <Button variant='outline-danger' size='md' onClick={()=>dispatch({type:ReducerActions.removeFromCart,payload:item.id})}>&times;</Button>
+                         <Button variant='outline-danger' size='sm' onClick={()=>dispatch({type:ReducerActions.removeFromCart,payload:item.id})}>&times;</Button>
                          </div>
                          </div>
                     </td>
