@@ -14,7 +14,7 @@ const Home = () => {
     fetchCat(); 
   },[])
   const fetchCat = async() =>{
-    if(cats.length == 0 ){await axios.get('https://dummyjson.com/products/category-list').then(res =>setCats(res.data) )}else{return cats}
+    if(cats.length == 0 ){await axios.get('https://api.escuelajs.co/api/v1/categories').then(res =>setCats(res.data) )}else{return cats}
   }
 
   console.log(cats)
